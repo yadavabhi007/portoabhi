@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'phonenumber_field',
     'portfolio',
 ]
 
@@ -52,6 +53,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'portoabhi.urls'
+
+AUTH_USER_MODEL = 'portfolio.User'
 
 TEMPLATES = [
     {
@@ -120,7 +123,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+# STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 # STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -146,3 +149,7 @@ DATA_UPLOAD_MAX_NUMBER_FIELDS = 20000
 
 SESSION_COOKIE_AGE = 60*60*24 #24 Hour
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
+
+PHONENUMBER_DEFAULT_REGION = "IN"
+
