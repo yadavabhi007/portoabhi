@@ -17,7 +17,6 @@ class CountryCodeForm(forms.ModelForm):
 
 
 class UserModelAdmin(BaseUserAdmin):
-    form = CountryCodeForm
     list_display = ('id', 'username', 'email', 'mobile_number', 'is_active', 'action', 'created_at', 'updated_at')
     list_filter = ('is_active', 'is_staff', 'is_superuser', 'groups', 'created_at', 'updated_at')
     fieldsets = (
