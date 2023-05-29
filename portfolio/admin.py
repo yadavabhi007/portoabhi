@@ -1,8 +1,11 @@
 from django.contrib import admin
 from .models import *
 from django import forms
+from django.contrib.auth import authenticate, get_user_model, password_validation
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from phonenumber_field.widgets import PhoneNumberPrefixWidget
+from django.utils.translation import gettext_lazy as _
+
 
 admin.site.site_title = "Abhishek Yadav"
 admin.site.site_header = "Abhishek Yadav Administration"
@@ -10,6 +13,18 @@ admin.site.index_title = "Abhishek Yadav Administration"
 
 
 class CountryCodeForm(forms.ModelForm):
+    password1 = forms.CharField(
+        label=_("Password"),
+        strip=False,
+        widget=forms.PasswordInput(attrs={"autocomplete": "new-password"}),
+        help_text=password_validation.password_validators_help_text_html(),
+    )
+    password2 = forms.CharField(
+        label=_("Password confirmation"),
+        widget=forms.PasswordInput(attrs={"autocomplete": "new-password"}),
+        strip=False,
+        help_text=_("Enter the same password as before, for verification."),
+    )
     class Meta:
         widgets = {
             'phone': PhoneNumberPrefixWidget(initial='IN'),
@@ -17,6 +32,7 @@ class CountryCodeForm(forms.ModelForm):
 
 
 class UserModelAdmin(BaseUserAdmin):
+    add_form = CountryCodeForm
     list_display = ('id', 'username', 'email', 'mobile_number', 'is_active', 'action', 'created_at', 'updated_at')
     list_filter = ('is_active', 'is_staff', 'is_superuser', 'groups', 'created_at', 'updated_at')
     fieldsets = (
