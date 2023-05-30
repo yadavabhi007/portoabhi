@@ -9,8 +9,8 @@ from .models import *
 class IndexView(View):
     def get(self, request):
         ip = request.META.get('REMOTE_ADDR')
-        print(ip)
-        return render (request, 'index.html')
+        about = About.objects.latest('id')
+        return render (request, 'index.html', {'about':about, 'ip':ip})
     
 
 

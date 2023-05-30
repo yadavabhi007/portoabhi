@@ -12,10 +12,10 @@
                         <img src="{% static 'images/me.png' %}" alt="About Me">
                     </div>
                     <div class="infos">
-                        <h4>A WEB DESIGNER</h4>
-                        <h1>David Henderson.</h1>
-                        <p>I am a Web Designer based in san francisco.</p>
-                        <a href="#" class="about-btn">
+                        <h4>{{about.role}}</h4>
+                        <h1>{{about.name}}</h1>
+                        <p>{{about.description}}</p>
+                        <a href="{% url 'about' %}" class="about-btn">
                             <img src="{% static 'images/icon.svg' %}" alt="Button">
                         </a>
                     </div>
@@ -45,7 +45,7 @@
                                 <img src="{% static 'images/sign.png' %}" alt="Sign">
                                 <div class="d-flex align-items-center justify-content-between">
                                     <div class="infos">
-                                        <h4>more about me</h4>
+                                        <h4>More About Me</h4>
                                         <h1>Credentials</h1>
                                     </div>
                                     <a href="{% url 'credentials' %}" class="about-btn">
@@ -64,7 +64,7 @@
                                         <h4>SHOWCASE</h4>
                                         <h1>Projects</h1>
                                     </div>
-                                    <a href="#" class="about-btn">
+                                    <a href="{% url 'works' %}" class="about-btn">
                                         <img src="{% static 'images/icon.svg' %}" alt="Button">
                                     </a>
                                 </div>
@@ -105,7 +105,7 @@
                             </div>
                             <div class="d-flex align-items-center justify-content-between">
                                 <div class="infos">
-                                    <h4>specialization</h4>
+                                    <h4>Specialization</h4>
                                     <h1>Services Offering</h1>
                                 </div>
                                 <a href="{% url 'service' %}" class="about-btn">
@@ -127,7 +127,7 @@
                             </div>
                             <div class="d-flex align-items-center justify-content-between">
                                 <div class="infos">
-                                    <h4>Stay with me</h4>
+                                    <h4>Stay With Me</h4>
                                     <h1>Profiles</h1>
                                 </div>
                                 <a href="{% url 'contact' %}" class="about-btn">
@@ -145,15 +145,11 @@
                     <img src="{% static 'images/bg1.png' %}" alt="BG" class="bg-img">
                     <div class="clients d-flex align-items-start gap-24 justify-content-center">
                         <div class="client-item">
-                            <h1>07</h1>
+                            <h1>{{about.experience}}+</h1>
                             <p>Years <br>Experience</p>
                         </div>
                         <div class="client-item">
-                            <h1>+125</h1>
-                            <p>CLIENTS <br>WORLDWIDE</p>
-                        </div>
-                        <div class="client-item">
-                            <h1>+210</h1>
+                            <h1>+{{about.projects}}</h1>
                             <p>Total <br>Projects</p>
                         </div>
                     </div>
@@ -164,8 +160,8 @@
                     <a class="overlay-link" href="{% url 'contact' %}"></a>
                     <img src="{% static 'images/bg1.png' %}" alt="BG" class="bg-img">
                     <img src="{% static 'images/icon2.png' %}" alt="Icon" class="star-icon">
-                    <h1>Let's <br>work <span>together.</span></h1>
-                    <a href="#" class="about-btn">
+                    <h1>Let's <br>Work <span>Together.</span></h1>
+                    <a href="{% url 'contact' %}" class="about-btn">
                         <img src="{% static 'images/icon.svg' %}" alt="Button">
                     </a>
                 </div>
