@@ -99,3 +99,19 @@ class AboutAdmin(admin.ModelAdmin):
         models.ImageField: {'widget': AdminImageWidget}
     }
 
+
+@admin.register(AboutDetail)
+class AboutDetailAdmin(admin.ModelAdmin):
+    list_display = ['id', 'profile_tag', 'name', 'created_at', 'updated_at']
+    search_fields = ('name',)
+    ordering = ('id', 'name', 'created_at', 'updated_at')
+    list_per_page = 20
+    list_max_show_all = 10000000
+    filter_horizontal = ()
+    list_filter = ['created_at', 'updated_at']
+    readonly_fields = ('created_at', 'updated_at')
+    formfield_overrides = {
+        models.ImageField: {'widget': AdminImageWidget}
+    }
+
+

@@ -95,3 +95,22 @@ class About(BaseModel):
         return None
     profile_tag.short_description = 'Profile'
     profile_tag.allow_tags = True
+
+
+class AboutDetail(BaseModel):
+    name = models.CharField(max_length=100)
+    profile = models.ImageField(upload_to='profile')
+    description = models.TextField()
+
+    class Meta:
+        verbose_name = 'About Detail'
+        verbose_name_plural = 'About Details'
+
+    def profile_tag(self):
+        if self.profile:
+            return mark_safe('<img src="{}" width="100" height="100"/>'.format(self.profile.url))
+        return None
+    profile_tag.short_description = 'Profile'
+    profile_tag.allow_tags = True
+
+    
