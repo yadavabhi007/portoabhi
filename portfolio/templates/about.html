@@ -8,19 +8,17 @@
                 <div class="about-image-box shadow-box">
                     <img src="{% static 'images/bg1.png' %}" alt="BG" class="bg-img">
                     <div class="image-inner">
-                        <img src="{% static 'images/me2.png' %}" alt="About Me">
+                        <img src="{{about_detail.profile.url}}" alt="About Me">
                     </div>
                 </div>
             </div>
             <div class="about-details" data-aos="zoom-in">
                 <h1 class="section-heading" data-aos="fade-up"><img src="{% static 'images/star-2.png' %}" alt="Star">
-                    Self-summary <img src="{% static 'images/star-2.png' %}" alt="Star"></h1>
+                    Self-Summary <img src="{% static 'images/star-2.png' %}" alt="Star"></h1>
                 <div class="about-details-inner shadow-box">
                     <img src="{% static 'images/icon2.png' %}" alt="Star">
-                    <h1>David Henderson</h1>
-                    <p>I am a San francisco-based product designer with a focus on web design, illustration, a visual
-                        development. I have a diverse range of experience having worked across various fields and
-                        industries.</p>
+                    <h1>{{about_detail.name}}</h1>
+                    <p>{{about_detail.description|linebreaksbr}}</p>
                 </div>
             </div>
         </div>
@@ -30,16 +28,15 @@
                     <img src="{% static 'images/bg1.png' %}" alt="BG" class="bg-img">
                     <h3>EXPERIENCE</h3>
                     <ul>
+                        {% if experiences %}
+                        {% for experience in experiences %}
                         <li>
-                            <p class="date">2007 - 2017</p>
-                            <h2>Framer Designer & Developer</h2>
-                            <p class="type">Bluebase Designs</p>
+                            <p class="date">{{experience.year}}</p>
+                            <h2>{{experience.position}}</h2>
+                            <p class="type">{{experience.company}}</p>
                         </li>
-                        <li>
-                            <p class="date">2017 - 2023</p>
-                            <h2>Front-End Developer</h2>
-                            <p class="type">Larsen & Toubro</p>
-                        </li>
+                        {% endfor %}
+                        {% endif %}
                     </ul>
                 </div>
             </div>
@@ -48,16 +45,15 @@
                     <img src="{% static 'images/bg1.png' %}" alt="BG" class="bg-img">
                     <h3>EDUCATION</h3>
                     <ul>
+                        {% if educations %}
+                        {% for education in educations %}
                         <li>
-                            <p class="date">2004 - 2007</p>
-                            <h2>Bachelor Degree in Psychology</h2>
-                            <p class="type">University of California</p>
+                            <p class="date">{{education.year}}</p>
+                            <h2>{{education.degree}}</h2>
+                            <p class="type">{{education.college}}</p>
                         </li>
-                        <li>
-                            <p class="date">2007 - 2009</p>
-                            <h2>Master Degree in Designing</h2>
-                            <p class="type">University of Texas</p>
-                        </li>
+                        {% endfor %}
+                        {% endif %}
                     </ul>
                 </div>
             </div>

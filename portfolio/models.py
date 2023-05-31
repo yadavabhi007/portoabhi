@@ -89,12 +89,24 @@ class About(BaseModel):
     experience = models.FloatField(validators=[MinValueValidator(0), MaxValueValidator(99)])
     projects = models.PositiveIntegerField(validators=[MaxValueValidator(999)])
 
+    class Meta:
+        verbose_name = 'About'
+        verbose_name_plural = 'About'
+
     def profile_tag(self):
         if self.profile:
             return mark_safe('<img src="{}" width="100" height="100"/>'.format(self.profile.url))
         return None
     profile_tag.short_description = 'Profile'
     profile_tag.allow_tags = True
+
+
+class Resume(BaseModel):
+    resume = models.FileField(upload_to='resume')
+
+    class Meta:
+        verbose_name = 'Resume'
+        verbose_name_plural = 'Resume'
 
 
 class AboutDetail(BaseModel):
@@ -104,7 +116,7 @@ class AboutDetail(BaseModel):
 
     class Meta:
         verbose_name = 'About Detail'
-        verbose_name_plural = 'About Details'
+        verbose_name_plural = 'About Detail'
 
     def profile_tag(self):
         if self.profile:
@@ -113,4 +125,36 @@ class AboutDetail(BaseModel):
     profile_tag.short_description = 'Profile'
     profile_tag.allow_tags = True
 
-    
+
+class Education(BaseModel):
+    degree = models.CharField(max_length=100)
+    college = models.CharField(max_length=100)
+    year = models.CharField(max_length=100)
+
+
+class Experience(BaseModel):
+    position = models.CharField(max_length=100)
+    company = models.CharField(max_length=100)
+    year = models.CharField(max_length=100)
+
+
+class ContactUs(BaseModel):
+    email = models.EmailField(max_length=100, unique=True)
+    mobile_number = models.CharField(max_length=100, unique=True)
+    location = models.CharField(max_length=100)
+
+    class Meta:
+        verbose_name = 'Contact Us'
+        verbose_name_plural = 'Contact Us'
+
+
+class Enquiry(BaseModel):
+    name = models.CharField(max_length=100)
+    email = models.EmailField(max_length=100)
+    subject = models.CharField(max_length=100)
+    message = models.TextField()
+
+    class Meta:
+        verbose_name = 'Enquiry'
+        verbose_name_plural = 'Enquiries'
+

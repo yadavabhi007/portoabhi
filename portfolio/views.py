@@ -1,8 +1,8 @@
-from django.shortcuts import render
-from django.shortcuts import render, redirect
+from .models import *
 from django.views import View
 from django.contrib import messages
-from .models import *
+from django.shortcuts import render, redirect
+from django.http import FileResponse, Http404
 
 
 
@@ -14,9 +14,22 @@ class IndexView(View):
     
 
 
+class ResumeView(View):
+    def get(self, request):
+            try:
+                resume = Resume.objects.latest('id')
+                return FileResponse(open('media/'+ str(resume.resume), 'rb'), content_type='application/pdf')
+            except:
+                messages.error(request, 'No File Found')
+                return redirect ('index')
+
+
 class AboutView(View):
     def get(self, request):
-        return render (request, 'about.html')
+        about_detail = AboutDetail.objects.latest('id')
+        educations = Education.objects.all().order_by('-id')
+        experiences = Experience.objects.all().order_by('-id')
+        return render (request, 'about.html', {'about_detail':about_detail, 'educations':educations, 'experiences':experiences})
     
 
 

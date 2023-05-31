@@ -21,6 +21,17 @@
     <main class="main-homepage">
         <header class="header-area">
             <div class="container">
+                {% if messages %}
+                {% for message in messages %}
+                {% if message.tags == 'error' %}
+                <script>swal("Oops...", "{{message}}!", "{{message.tags}}");</script>
+                {% elif message.tags == 'success' %}
+                <script>swal("Good Job!", "{{message}}!", "{{message.tags}}");</script>
+                {% else %}
+                <script>swal("Info!", "{{message}}!", "{{message.tags}}");</script>
+                {% endif %}
+                {% endfor %}
+                {% endif %}
                 <div class="gx-row d-flex align-items-center justify-content-between">
                     <a href="{% url 'index' %}" class="logo">
                         <img src="{% static 'images/logo.svg' %}" alt="Logo">
@@ -33,7 +44,7 @@
                             <li class="{% if request.resolver_match.url_name == 'contact' %}active{% endif %}"><a href="{% url 'contact' %}">Contact</a></li>
                         </ul>
                     </nav>
-                    <a href="#" class="theme-btn">Resume</a>
+                    <a href="{% url 'resume' %}" class="theme-btn">Resume</a>
                     <div class="show-menu">
                         <span></span>
                         <span></span>

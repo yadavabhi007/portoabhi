@@ -100,6 +100,18 @@ class AboutAdmin(admin.ModelAdmin):
     }
 
 
+@admin.register(Resume)
+class ResumeAdmin(admin.ModelAdmin):
+    list_display = ['id', 'resume', 'created_at', 'updated_at']
+    search_fields = ('resume',)
+    ordering = ('id', 'resume', 'created_at', 'updated_at')
+    list_per_page = 20
+    list_max_show_all = 10000000
+    filter_horizontal = ()
+    list_filter = ['created_at', 'updated_at']
+    readonly_fields = ('created_at', 'updated_at')
+
+
 @admin.register(AboutDetail)
 class AboutDetailAdmin(admin.ModelAdmin):
     list_display = ['id', 'profile_tag', 'name', 'created_at', 'updated_at']
@@ -113,5 +125,53 @@ class AboutDetailAdmin(admin.ModelAdmin):
     formfield_overrides = {
         models.ImageField: {'widget': AdminImageWidget}
     }
+
+
+@admin.register(Education)
+class EducationAdmin(admin.ModelAdmin):
+    list_display = ['id', 'degree', 'college', 'year', 'created_at', 'updated_at']
+    search_fields = ('degree', 'college', 'year')
+    ordering = ('id', 'degree', 'college', 'year', 'created_at', 'updated_at')
+    list_per_page = 20
+    list_max_show_all = 10000000
+    filter_horizontal = ()
+    list_filter = ['created_at', 'updated_at']
+    readonly_fields = ('created_at', 'updated_at')
+
+
+@admin.register(Experience)
+class ExperienceAdmin(admin.ModelAdmin):
+    list_display = ['id', 'position', 'company', 'year', 'created_at', 'updated_at']
+    search_fields = ('position', 'company', 'year')
+    ordering = ('id', 'position', 'company', 'year', 'created_at', 'updated_at')
+    list_per_page = 20
+    list_max_show_all = 10000000
+    filter_horizontal = ()
+    list_filter = ['created_at', 'updated_at']
+    readonly_fields = ('created_at', 'updated_at')
+
+
+@admin.register(ContactUs)
+class ContactUsAdmin(admin.ModelAdmin):
+    list_display = ['id', 'email', 'mobile_number', 'location', 'created_at', 'updated_at']
+    search_fields = ('email', 'mobile_number', 'location')
+    ordering = ('id', 'email', 'mobile_number', 'location', 'created_at', 'updated_at')
+    list_per_page = 20
+    list_max_show_all = 10000000
+    filter_horizontal = ()
+    list_filter = ['created_at', 'updated_at']
+    readonly_fields = ('created_at', 'updated_at')
+
+
+@admin.register(Enquiry)
+class EnquiryAdmin(admin.ModelAdmin):
+    list_display = ['id', 'name', 'email', 'subject', 'created_at', 'updated_at']
+    search_fields = ('name', 'email', 'subject', 'location')
+    ordering = ('id', 'name', 'email', 'subject', 'created_at', 'updated_at')
+    list_per_page = 20
+    list_max_show_all = 10000000
+    filter_horizontal = ()
+    list_filter = ['created_at', 'updated_at']
+    readonly_fields = ('created_at', 'updated_at')
 
 
