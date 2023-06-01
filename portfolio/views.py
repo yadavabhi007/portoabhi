@@ -50,7 +50,7 @@ class ContactView(View):
         contact = ContactUs.objects.first()
         proxy_servers = request.META.get('HTTP_X_FORWARDED_FOR')
         if proxy_servers:
-            ip = proxy_servers.split(',')[-1]
+            ip = proxy_servers.split(',')[0]
         else:
             ip = request.META.get('REMOTE_ADDR')
         request.POST = request.POST.copy()
