@@ -1970,3 +1970,31 @@ ol {
         padding-left: 0;
     }
 }
+
+
+
+/*******************************************/
+
+#mobile_numberid_0{
+    width: 29%;
+    border: none;
+    background: linear-gradient(120deg, rgba(255,255,255,0.05), rgba(255,255,255,0.01));
+    border-radius: 10px;
+    padding: 17px 20px;
+    font-size: 14px;
+    display: block;
+    color: #fff;
+    background-color: #222222;
+    }
+
+    #mobile_numberid_1{
+        width: 70%;
+        border: none;
+        background: linear-gradient(120deg, rgba(255,255,255,0.05), rgba(255,255,255,0.01));
+        border-radius: 10px;
+        padding: 17px 20px;
+        font-size: 14px;
+        display: block;
+        color: #fff;
+        margin: 0px 0px 0px 6px;
+    }

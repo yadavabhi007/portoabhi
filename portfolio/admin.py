@@ -1,8 +1,7 @@
 from .models import *
-from django import forms
+from .forms import *
 from django.contrib import admin
 from django.contrib.admin.widgets import AdminFileWidget
-from phonenumber_field.widgets import PhoneNumberPrefixWidget
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.forms import UserCreationForm as BaseUserCreationForm, UserChangeForm as  BaseUserChangeForm
 
@@ -74,12 +73,6 @@ class UserModelAdmin(BaseUserAdmin):
 admin.site.register(User, UserModelAdmin)
 
 
-# class AdminContactForm(forms.ModelForm):
-#     class Meta:
-#         widgets = {
-#             'phone': PhoneNumberPrefixWidget(initial='IN'),
-#         }
-
 # @admin.register(Contact)
 # class ContactAdmin(admin.ModelAdmin):
 #     form = AdminContactForm
@@ -110,6 +103,20 @@ class ResumeAdmin(admin.ModelAdmin):
     filter_horizontal = ()
     list_filter = ['created_at', 'updated_at']
     readonly_fields = ('created_at', 'updated_at')
+
+
+
+@admin.register(SiteVisitedIPs)
+class SiteVisitedIPsAdmin(admin.ModelAdmin):
+    list_display = ['id', 'ip', 'device', 'created_at', 'updated_at']
+    search_fields = ('ip', 'device')
+    ordering = ('id', 'ip', 'device', 'created_at', 'updated_at')
+    list_per_page = 20
+    list_max_show_all = 10000000
+    filter_horizontal = ()
+    list_filter = ['created_at', 'updated_at']
+    readonly_fields = ('created_at', 'updated_at')
+
 
 
 @admin.register(AboutDetail)
@@ -153,6 +160,7 @@ class ExperienceAdmin(admin.ModelAdmin):
 
 @admin.register(ContactUs)
 class ContactUsAdmin(admin.ModelAdmin):
+    form = MobileNumberForm
     list_display = ['id', 'email', 'mobile_number', 'location', 'created_at', 'updated_at']
     search_fields = ('email', 'mobile_number', 'location')
     ordering = ('id', 'email', 'mobile_number', 'location', 'created_at', 'updated_at')
@@ -165,13 +173,14 @@ class ContactUsAdmin(admin.ModelAdmin):
 
 @admin.register(Enquiry)
 class EnquiryAdmin(admin.ModelAdmin):
-    list_display = ['id', 'name', 'email', 'subject', 'created_at', 'updated_at']
-    search_fields = ('name', 'email', 'subject', 'location')
-    ordering = ('id', 'name', 'email', 'subject', 'created_at', 'updated_at')
+    form = MobileNumberForm
+    list_display = ['id', 'name', 'email', 'mobile_number', 'subject', 'ip', 'device', 'created_at', 'updated_at']
+    search_fields = ('name', 'email', 'mobile_number', 'subject', 'ip', 'device')
+    ordering = ('id', 'name', 'email', 'mobile_number', 'subject', 'ip', 'device', 'created_at', 'updated_at')
     list_per_page = 20
     list_max_show_all = 10000000
     filter_horizontal = ()
-    list_filter = ['created_at', 'updated_at']
+    list_filter = ['ip', 'device', 'created_at', 'updated_at']
     readonly_fields = ('created_at', 'updated_at')
 
 

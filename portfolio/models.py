@@ -109,6 +109,16 @@ class Resume(BaseModel):
         verbose_name_plural = 'Resume'
 
 
+class SiteVisitedIPs(BaseModel):
+    ip = models.CharField(max_length=100, null=True, blank=True)
+    device = models.CharField(max_length=100, null=True, blank=True)
+
+    class Meta:
+        verbose_name = 'Site Visited IP'
+        verbose_name_plural = 'Site Visited IPs'
+
+
+
 class AboutDetail(BaseModel):
     name = models.CharField(max_length=100)
     profile = models.ImageField(upload_to='profile')
@@ -140,7 +150,7 @@ class Experience(BaseModel):
 
 class ContactUs(BaseModel):
     email = models.EmailField(max_length=100, unique=True)
-    mobile_number = models.CharField(max_length=100, unique=True)
+    mobile_number = PhoneNumberField(max_length=15, unique=True)
     location = models.CharField(max_length=100)
 
     class Meta:
@@ -150,9 +160,15 @@ class ContactUs(BaseModel):
 
 class Enquiry(BaseModel):
     name = models.CharField(max_length=100)
+    mobile_number = PhoneNumberField(max_length=15)
     email = models.EmailField(max_length=100)
+    ip = models.CharField(max_length=100, null=True, blank=True)
+    device = models.CharField(max_length=100, null=True, blank=True)
     subject = models.CharField(max_length=100)
     message = models.TextField()
+
+    def __str__(self):
+        return self.name
 
     class Meta:
         verbose_name = 'Enquiry'
