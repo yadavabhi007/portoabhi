@@ -108,13 +108,13 @@ class ResumeAdmin(admin.ModelAdmin):
 
 @admin.register(SiteVisitedIPs)
 class SiteVisitedIPsAdmin(admin.ModelAdmin):
-    list_display = ['id', 'ip', 'device', 'created_at', 'updated_at']
-    search_fields = ('ip', 'device')
-    ordering = ('id', 'ip', 'device', 'created_at', 'updated_at')
+    list_display = ['id', 'ip', 'device', 'device_type', 'os_type', 'created_at', 'updated_at']
+    search_fields = ('ip', 'device' 'device_type', 'os_type',)
+    ordering = ('id', 'ip', 'device', 'device_type', 'os_type', 'created_at', 'updated_at')
     list_per_page = 20
     list_max_show_all = 10000000
     filter_horizontal = ()
-    list_filter = ['created_at', 'updated_at']
+    list_filter = ['device_type', 'os_type', 'created_at', 'updated_at']
     readonly_fields = ('created_at', 'updated_at')
 
 
@@ -174,13 +174,24 @@ class ContactUsAdmin(admin.ModelAdmin):
 @admin.register(Enquiry)
 class EnquiryAdmin(admin.ModelAdmin):
     form = MobileNumberForm
-    list_display = ['id', 'name', 'email', 'mobile_number', 'subject', 'ip', 'device', 'created_at', 'updated_at']
-    search_fields = ('name', 'email', 'mobile_number', 'subject', 'ip', 'device')
-    ordering = ('id', 'name', 'email', 'mobile_number', 'subject', 'ip', 'device', 'created_at', 'updated_at')
+    list_display = ['id', 'name', 'email', 'mobile_number', 'subject', 'ip', 'device', 'device_type', 'os_type', 'created_at', 'updated_at']
+    search_fields = ('name', 'email', 'mobile_number', 'subject', 'ip', 'device', 'device_type', 'os_type')
+    ordering = ('id', 'name', 'email', 'mobile_number', 'subject', 'ip', 'device', 'device_type', 'os_type', 'created_at', 'updated_at')
     list_per_page = 20
     list_max_show_all = 10000000
     filter_horizontal = ()
-    list_filter = ['ip', 'device', 'created_at', 'updated_at']
+    list_filter = ['ip', 'device', 'device_type', 'os_type', 'created_at', 'updated_at']
     readonly_fields = ('created_at', 'updated_at')
 
+
+@admin.register(Specialization)
+class SpecializationAdmin(admin.ModelAdmin):
+    list_display = ['id', 'heading', 'created_at', 'updated_at']
+    search_fields = ('heading',)
+    ordering = ('id', 'heading', 'created_at', 'updated_at')
+    list_per_page = 20
+    list_max_show_all = 10000000
+    filter_horizontal = ()
+    list_filter = ['created_at', 'updated_at']
+    readonly_fields = ('created_at', 'updated_at')
 

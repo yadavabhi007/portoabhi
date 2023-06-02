@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'phonenumber_field',
     'portfolio',
+    'django_user_agents',
+    'geoip2',
 ]
 
 MIDDLEWARE = [
@@ -50,6 +52,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django_user_agents.middleware.UserAgentMiddleware',
 ]
 
 ROOT_URLCONF = 'portoabhi.urls'
@@ -155,3 +158,4 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 PHONENUMBER_DEFAULT_REGION = "IN"
 
+GEOIP_PATH =os.path.join('geoip')
