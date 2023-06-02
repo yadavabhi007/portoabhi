@@ -8,7 +8,11 @@
                 <div class="about-image-box shadow-box">
                     <img src="{% static 'images/bg1.png' %}" alt="BG" class="bg-img">
                     <div class="image-inner">
-                        <img src="{{about_detail.profile.url}}" alt="About Me">
+                        {% if about_detail.image %}
+                        <img src="{{about_detail.profile.url}}" alt="Profile">
+                        {% else %}
+                        <img src="{% static 'images/me2.png' %}" alt="Profile">
+                        {% endif %}
                     </div>
                 </div>
             </div>

@@ -9,7 +9,11 @@
                     <a class="overlay-link" href="{% url 'about' %}"></a>
                     <img src="{% static 'images/bg1.png' %}" alt="BG" class="bg-img">
                     <div class="img-box">
-                        <img src="{% static 'images/me.png' %}" alt="About Me">
+                        {% if about.image %}
+                        <img src="{{about.profile.url}}" alt="Profile">
+                        {% else %}
+                        <img src="{% static 'images/me.png' %}" alt="Profile">
+                        {% endif %}
                     </div>
                     <div class="infos">
                         <h4>{{about.role}}</h4>

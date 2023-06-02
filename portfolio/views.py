@@ -11,7 +11,7 @@ from django.shortcuts import render, redirect
 
 class IndexView(View):
     def get(self, request):
-        about = About.objects.latest('id')
+        about = About.objects.first()
         proxy_servers = request.META.get('HTTP_X_FORWARDED_FOR')
         if request.user_agent.is_mobile:
             device_type = "Mobile"
