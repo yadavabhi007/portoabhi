@@ -89,6 +89,9 @@ class About(BaseModel):
     experience = models.FloatField(validators=[MinValueValidator(0), MaxValueValidator(99)])
     projects = models.PositiveIntegerField(validators=[MaxValueValidator(999)])
 
+    def __str__(self):
+        return self.name
+    
     class Meta:
         verbose_name = 'About'
         verbose_name_plural = 'About'
@@ -109,6 +112,20 @@ class Resume(BaseModel):
         verbose_name_plural = 'Resume'
 
 
+
+class CurrentStatus(BaseModel):
+    heading = models.CharField(max_length=100) 
+    status = models.TextField()
+
+    def __str__(self):
+        return self.heading
+    
+    class Meta:
+        verbose_name = 'Current Status'
+        verbose_name_plural = 'Current Status'
+
+
+
 class SiteVisitedIPs(BaseModel):
     ip = models.CharField(max_length=100, null=True, blank=True)
     device = models.CharField(max_length=100, null=True, blank=True)
@@ -120,6 +137,9 @@ class SiteVisitedIPs(BaseModel):
     os_type = models.CharField(max_length=100, null=True, blank=True)
     os_version = models.CharField(max_length=100, null=True, blank=True)
 
+    def __str__(self):
+        return self.ip
+    
     class Meta:
         verbose_name = 'Site Visited IP'
         verbose_name_plural = 'Site Visited IPs'
@@ -130,6 +150,9 @@ class AboutDetail(BaseModel):
     name = models.CharField(max_length=100)
     profile = models.ImageField(upload_to='profile')
     description = models.TextField()
+
+    def __str__(self):
+        return self.name
 
     class Meta:
         verbose_name = 'About Detail'
@@ -148,17 +171,26 @@ class Education(BaseModel):
     college = models.CharField(max_length=100)
     year = models.CharField(max_length=100)
 
+    def __str__(self):
+        return self.degree
+
 
 class Experience(BaseModel):
     position = models.CharField(max_length=100)
     company = models.CharField(max_length=100)
     year = models.CharField(max_length=100)
 
+    def __str__(self):
+        return self.company
+    
 
 class ContactUs(BaseModel):
     email = models.EmailField(max_length=100, unique=True)
     mobile_number = PhoneNumberField(max_length=15, unique=True)
     location = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.email
 
     class Meta:
         verbose_name = 'Contact Us'
@@ -195,3 +227,125 @@ class Specialization(BaseModel):
 
     def __str__(self):
         return self.heading
+    
+
+class SocialProfile(BaseModel):
+    PROFILE = [
+        ("Linkedin", 'Linkedin'),
+        ("Github", 'Github'),
+        ("Instagram", 'Instagram'),
+        ("Facebook", 'Facebook'),
+        ("Twitter", 'Twitter'),
+        ("Snapchat", 'Snapchat'),
+        ("Whatsapp", 'Whatsapp'),
+    ]
+    heading = models.CharField(max_length=100, choices=PROFILE, unique=True, default='Linkedin')
+    url = models.URLField()
+
+    def __str__(self):
+        return self.heading
+    
+    class Meta:
+        verbose_name = 'Social Profile'
+        verbose_name_plural = 'Social Profiles'
+
+
+class Credential(BaseModel):
+    role = models.CharField(max_length=100)
+    name = models.CharField(max_length=100)
+    profile = models.ImageField(upload_to='profile')
+    about = models.TextField()
+
+    def __str__(self):
+        return self.name
+
+    def profile_tag(self):
+        if self.profile:
+            return mark_safe('<img src="{}" width="100" height="100"/>'.format(self.profile.url))
+        return None
+    profile_tag.short_description = 'Profile'
+    profile_tag.allow_tags = True
+
+
+class CredentialEducation(BaseModel):
+    degree = models.CharField(max_length=100)
+    college = models.CharField(max_length=100)
+    year = models.CharField(max_length=100)
+    description = models.TextField()
+
+    def __str__(self):
+        return self.degree
+    
+    class Meta:
+        verbose_name = 'Credential Education'
+        verbose_name_plural = 'Credential Educations'
+
+
+class CredentialExperience(BaseModel):
+    position = models.CharField(max_length=100)
+    company = models.CharField(max_length=100)
+    year = models.CharField(max_length=100)
+    description = models.TextField()
+
+    def __str__(self):
+        return self.company
+    
+    class Meta:
+        verbose_name = 'Credential Experience'
+        verbose_name_plural = 'Credential Experiences'
+
+
+class Skill(BaseModel):
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
+    
+
+class Certificate(BaseModel):
+    issue_date = models.DateField(auto_now_add=True)
+    name = models.CharField(max_length=100)
+    issuer = models.CharField(max_length=100)
+
+
+    def __str__(self):
+        return self.name
+    
+
+class Work(BaseModel):
+    name = models.CharField(max_length=100)
+    services = models.CharField(max_length=100)
+    image = models.ImageField(upload_to='work')
+
+    def __str__(self):
+        return self.name
+
+    def image_tag(self):
+        if self.profile:
+            return mark_safe('<img src="{}" width="100" height="100"/>'.format(self.image.url))
+        return None
+    image_tag.short_description = 'Profile'
+    image_tag.allow_tags = True
+
+
+class WorkDetail(BaseModel):
+    name = models.CharField(max_length=100)
+    image_1 = models.ImageField(upload_to='work')
+    image_2 = models.ImageField(upload_to='work')
+    about = models.TextField()
+    skill_description = models.TextField()
+    description = models.TextField()
+    year = models.CharField(max_length=100)
+    client = models.CharField(max_length=100)
+    services = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
+
+    def image_tag_1(self):
+        if self.profile:
+            return mark_safe('<img src="{}" width="100" height="100"/>'.format(self.image_1.url))
+        return None
+    image_tag_1.short_description = 'Profile'
+    image_tag_1.allow_tags = True
+

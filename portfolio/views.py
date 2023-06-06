@@ -12,6 +12,7 @@ from django.shortcuts import render, redirect
 class IndexView(View):
     def get(self, request):
         about = About.objects.first()
+        current_status = CurrentStatus.objects.first()
         proxy_servers = request.META.get('HTTP_X_FORWARDED_FOR')
         if request.user_agent.is_mobile:
             device_type = "Mobile"
@@ -54,7 +55,7 @@ class IndexView(View):
         message_browser_version = f'Browser Version: {browser_version}'
         message_os_type = f'OS Type: {os_type}'
         message_os_version = f'OS Version: {os_version}'
-        context = {'about':about, 'ip':ip, 'device':socket.gethostname(), 'device_type':device_type, 'city':city, 'country':country, 'browser_type':browser_type, 'browser_version':browser_version, 'os_type':os_type, 'os_version':os_version, 'message':message, 'message_ip':message_ip, 'message_device':message_device, 'message_device_type':message_device_type, 'message_city':message_city, 'message_country':message_country, 'message_browser_type':message_browser_type, 'message_browser_version':message_browser_version, 'message_os_type':message_os_type, 'message_os_version':message_os_version}
+        context = {'about':about, 'ip':ip, 'device':socket.gethostname(), 'device_type':device_type, 'city':city, 'country':country, 'browser_type':browser_type, 'browser_version':browser_version, 'os_type':os_type, 'os_version':os_version, 'message':message, 'message_ip':message_ip, 'message_device':message_device, 'message_device_type':message_device_type, 'message_city':message_city, 'message_country':message_country, 'message_browser_type':message_browser_type, 'message_browser_version':message_browser_version, 'message_os_type':message_os_type, 'message_os_version':message_os_version, 'current_status':current_status}
         return render (request, 'index.html', context)
     
 
@@ -172,14 +173,4 @@ class CredentialsView(View):
     
 
 
-class BlogView(View):
-    def get(self, request):
-        return render (request, 'blog.html')
-    
-
-
-class BlogDetailsView(View):
-    def get(self, request):
-        return render (request, 'blog-details.html')
-    
 

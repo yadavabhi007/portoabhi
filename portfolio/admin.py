@@ -1,5 +1,5 @@
-from .models import *
 from .forms import *
+from .models import *
 from django.contrib import admin
 from django.contrib.admin.widgets import AdminFileWidget
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
@@ -73,10 +73,6 @@ class UserModelAdmin(BaseUserAdmin):
 admin.site.register(User, UserModelAdmin)
 
 
-# @admin.register(Contact)
-# class ContactAdmin(admin.ModelAdmin):
-#     form = AdminContactForm
-
 
 @admin.register(About)
 class AboutAdmin(admin.ModelAdmin):
@@ -98,6 +94,19 @@ class ResumeAdmin(admin.ModelAdmin):
     list_display = ['id', 'resume', 'created_at', 'updated_at']
     search_fields = ('resume',)
     ordering = ('id', 'resume', 'created_at', 'updated_at')
+    list_per_page = 20
+    list_max_show_all = 10000000
+    filter_horizontal = ()
+    list_filter = ['created_at', 'updated_at']
+    readonly_fields = ('created_at', 'updated_at')
+
+
+
+@admin.register(CurrentStatus)
+class CurrentStatusAdmin(admin.ModelAdmin):
+    list_display = ['id', 'heading', 'created_at', 'updated_at']
+    search_fields = ('heading',)
+    ordering = ('id', 'heading', 'created_at', 'updated_at')
     list_per_page = 20
     list_max_show_all = 10000000
     filter_horizontal = ()
@@ -194,4 +203,109 @@ class SpecializationAdmin(admin.ModelAdmin):
     filter_horizontal = ()
     list_filter = ['created_at', 'updated_at']
     readonly_fields = ('created_at', 'updated_at')
+
+
+@admin.register(SocialProfile)
+class SocialProfileAdmin(admin.ModelAdmin):
+    list_display = ['id', 'heading', 'url', 'created_at', 'updated_at']
+    search_fields = ('heading', 'url')
+    ordering = ('id', 'heading', 'url', 'created_at', 'updated_at')
+    list_per_page = 20
+    list_max_show_all = 10000000
+    filter_horizontal = ()
+    list_filter = ['created_at', 'updated_at']
+    readonly_fields = ('created_at', 'updated_at')
+
+
+@admin.register(Credential)
+class CredentialAdmin(admin.ModelAdmin):
+    list_display = ['id', 'profile_tag', 'name', 'role', 'created_at', 'updated_at']
+    search_fields = ('name', 'role')
+    ordering = ('id', 'name', 'role', 'created_at', 'updated_at')
+    list_per_page = 20
+    list_max_show_all = 10000000
+    filter_horizontal = ()
+    list_filter = ['role', 'created_at', 'updated_at']
+    readonly_fields = ('created_at', 'updated_at')
+    formfield_overrides = {
+        models.ImageField: {'widget': AdminImageWidget}
+    }
+
+
+@admin.register(CredentialEducation)
+class CredentialEducationAdmin(admin.ModelAdmin):
+    list_display = ['id', 'degree', 'college', 'year', 'created_at', 'updated_at']
+    search_fields = ('degree', 'college', 'year')
+    ordering = ('id', 'degree', 'college', 'year', 'created_at', 'updated_at')
+    list_per_page = 20
+    list_max_show_all = 10000000
+    filter_horizontal = ()
+    list_filter = ['created_at', 'updated_at']
+    readonly_fields = ('created_at', 'updated_at')
+
+
+@admin.register(CredentialExperience)
+class CredentialExperienceAdmin(admin.ModelAdmin):
+    list_display = ['id', 'position', 'company', 'year', 'created_at', 'updated_at']
+    search_fields = ('position', 'company', 'year')
+    ordering = ('id', 'position', 'company', 'year', 'created_at', 'updated_at')
+    list_per_page = 20
+    list_max_show_all = 10000000
+    filter_horizontal = ()
+    list_filter = ['created_at', 'updated_at']
+    readonly_fields = ('created_at', 'updated_at')
+
+
+@admin.register(Skill)
+class SkillAdmin(admin.ModelAdmin):
+    list_display = ['id', 'name', 'created_at', 'updated_at']
+    search_fields = ('name',)
+    ordering = ('id', 'name', 'created_at', 'updated_at')
+    list_per_page = 20
+    list_max_show_all = 10000000
+    filter_horizontal = ()
+    list_filter = ['created_at', 'updated_at']
+    readonly_fields = ('created_at', 'updated_at')
+
+
+@admin.register(Certificate)
+class CertificateAdmin(admin.ModelAdmin):
+    list_display = ['id', 'name', 'issuer', 'issue_date', 'created_at', 'updated_at']
+    search_fields = ('name', 'issuer', 'issue_date')
+    ordering = ('id', 'name', 'issuer', 'issue_date', 'created_at', 'updated_at')
+    list_per_page = 20
+    list_max_show_all = 10000000
+    filter_horizontal = ()
+    list_filter = ['created_at', 'updated_at']
+    readonly_fields = ('created_at', 'updated_at')
+
+
+@admin.register(Work)
+class WorkAdmin(admin.ModelAdmin):
+    list_display = ['id', 'image_tag', 'name', 'services', 'created_at', 'updated_at']
+    search_fields = ('name', 'services')
+    ordering = ('id', 'name', 'services', 'created_at', 'updated_at')
+    list_per_page = 20
+    list_max_show_all = 10000000
+    filter_horizontal = ()
+    list_filter = ['created_at', 'updated_at']
+    readonly_fields = ('created_at', 'updated_at')
+    formfield_overrides = {
+        models.ImageField: {'widget': AdminImageWidget}
+    }
+
+
+@admin.register(WorkDetail)
+class WorkDetailAdmin(admin.ModelAdmin):
+    list_display = ['id', 'image_tag_1', 'name', 'services', 'created_at', 'updated_at']
+    search_fields = ('name', 'services')
+    ordering = ('id', 'name', 'services', 'created_at', 'updated_at')
+    list_per_page = 20
+    list_max_show_all = 10000000
+    filter_horizontal = ()
+    list_filter = ['created_at', 'updated_at']
+    readonly_fields = ('created_at', 'updated_at')
+    formfield_overrides = {
+        models.ImageField: {'widget': AdminImageWidget}
+    }
 
