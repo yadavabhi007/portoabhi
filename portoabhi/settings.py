@@ -53,7 +53,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django_user_agents.middleware.UserAgentMiddleware',
-    'portfolio.middlewares.UnderConstructionMiddleware',
+    # 'portfolio.middlewares.UnderConstructionMiddleware',
 ]
 
 ROOT_URLCONF = 'portoabhi.urls'
