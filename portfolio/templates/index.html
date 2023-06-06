@@ -32,11 +32,9 @@
                             <div class="marquee">
                                 <div>
                                     <span>
-                                        LATEST WORK AND <b>FEATURED</b> <img src="{% static 'images/star1.svg' %}" alt="Star">
-                                        LATEST WORK AND <b>FEATURED</b> <img src="{% static 'images/star1.svg' %}" alt="Star">
-                                        LATEST WORK AND <b>FEATURED</b> <img src="{% static 'images/star1.svg' %}" alt="Star">
-                                        LATEST WORK AND <b>FEATURED</b> LATEST WORK AND <img src="{% static 'images/star1.svg' %}" alt="Star">
-                                        LATEST WORK AND <b>FEATURED</b> LATEST WORK AND <img src="{% static 'images/star1.svg' %}" alt="Star">
+                                        {% if current_status %}
+                                        {{current_status.status}} <img src="{% static 'images/star1.svg' %}" alt="Star"> <b>{{current_status.status}}</b> <img src="{% static 'images/star1.svg' %}" alt="Star"> {{current_status.status}} <img src="{% static 'images/star1.svg' %}" alt="Star">
+                                        {% endif %}
                                     </span>
                                 </div>
                             </div>
@@ -84,15 +82,15 @@
                 <div class="blog-service-profile-wrap d-flex gap-24">
                     <div data-aos="zoom-in">
                         <div class="about-blog-box info-box shadow-box h-full">
-                            <a href="{% url 'blog' %}" class="overlay-link"></a>
+                            <a href="{% url 'credentials' %}" class="overlay-link"></a>
                             <img src="{% static 'images/bg1.png' %}" alt="BG" class="bg-img">
                             <img src="{% static 'images/gfonts.png' %}" alt="Blogs">
                             <div class="d-flex align-items-center justify-content-between">
                                 <div class="infos">
-                                    <h4>Project Blog</h4>
-                                    <h1>Blogs</h1>
+                                    <h4>More Regarding Me</h4>
+                                    <h1>About Me</h1>
                                 </div>
-                                <a href="{% url 'blog' %}" class="about-btn">
+                                <a href="{% url 'credentials' %}" class="about-btn">
                                     <img src="{% static 'images/icon.svg' %}" alt="Button">
                                 </a>
                             </div>
@@ -123,10 +121,10 @@
                         <div class="about-profile-box info-box shadow-box h-full">
                             <img src="{% static 'images/bg1.png' %}" alt="BG" class="bg-img">
                             <div class="inner-profile-icons shadow-box">
-                                <a href="#">
+                                <a href="{{linkedin.url}}">
                                     <i class="iconoir-linkedin"></i>
                                 </a>
-                                <a href="#">
+                                <a href="{{github.url}}">
                                     <i class="iconoir-github"></i>
                                 </a>
                             </div>
