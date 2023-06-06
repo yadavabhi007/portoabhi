@@ -3,7 +3,7 @@ from .models import SocialProfile
 
 def social_profile_context_processor(request):
     try:
-        linkedin = SocialProfile.objects.get(heading='LinkedIn')
+        linkedin = SocialProfile.objects.get(heading='Linkedin')
         github = SocialProfile.objects.get(heading='Github')
         instagram = SocialProfile.objects.get(heading='Instagram')
         facebook = SocialProfile.objects.get(heading='Facebook')

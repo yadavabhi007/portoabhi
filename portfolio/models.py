@@ -230,7 +230,16 @@ class Specialization(BaseModel):
     
 
 class SocialProfile(BaseModel):
-    heading = models.CharField(max_length=100, unique=True)
+    PROFILE = [
+        ("Linkedin", 'Linkedin'),
+        ("Github", 'Github'),
+        ("Instagram", 'Instagram'),
+        ("Facebook", 'Facebook'),
+        ("Twitter", 'Twitter'),
+        ("Snapchat", 'Snapchat'),
+        ("Whatsapp", 'Whatsapp'),
+    ]
+    heading = models.CharField(max_length=100, choices=PROFILE, unique=True, default='Linkedin')
     url = models.URLField()
 
     def __str__(self):
@@ -340,4 +349,3 @@ class WorkDetail(BaseModel):
     image_tag_1.short_description = 'Profile'
     image_tag_1.allow_tags = True
 
-    
