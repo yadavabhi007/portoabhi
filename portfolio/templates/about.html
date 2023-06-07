@@ -8,7 +8,7 @@
                 <div class="about-image-box shadow-box">
                     <img src="{% static 'images/bg1.png' %}" alt="BG" class="bg-img">
                     <div class="image-inner">
-                        {% if about_detail.image %}
+                        {% if about_detail.profile %}
                         <img src="{{about_detail.profile.url}}" alt="Profile">
                         {% else %}
                         <img src="{% static 'images/me2.png' %}" alt="Profile">
@@ -32,7 +32,6 @@
                     <img src="{% static 'images/bg1.png' %}" alt="BG" class="bg-img">
                     <h3>EXPERIENCE</h3>
                     <ul>
-                        {% if experiences %}
                         {% for experience in experiences %}
                         <li>
                             <p class="date">{{experience.year}}</p>
@@ -40,7 +39,6 @@
                             <p class="type">{{experience.company}}</p>
                         </li>
                         {% endfor %}
-                        {% endif %}
                     </ul>
                 </div>
             </div>
@@ -49,7 +47,6 @@
                     <img src="{% static 'images/bg1.png' %}" alt="BG" class="bg-img">
                     <h3>EDUCATION</h3>
                     <ul>
-                        {% if educations %}
                         {% for education in educations %}
                         <li>
                             <p class="date">{{education.year}}</p>
@@ -57,7 +54,6 @@
                             <p class="type">{{education.college}}</p>
                         </li>
                         {% endfor %}
-                        {% endif %}
                     </ul>
                 </div>
             </div>

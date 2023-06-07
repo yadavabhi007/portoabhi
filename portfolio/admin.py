@@ -258,9 +258,9 @@ class CredentialExperienceAdmin(admin.ModelAdmin):
 
 @admin.register(Skill)
 class SkillAdmin(admin.ModelAdmin):
-    list_display = ['id', 'name', 'created_at', 'updated_at']
-    search_fields = ('name',)
-    ordering = ('id', 'name', 'created_at', 'updated_at')
+    list_display = ['id', 'name', 'summary', 'percentage', 'created_at', 'updated_at']
+    search_fields = ('name', 'summary')
+    ordering = ('id', 'name', 'summary', 'percentage', 'created_at', 'updated_at')
     list_per_page = 20
     list_max_show_all = 10000000
     filter_horizontal = ()

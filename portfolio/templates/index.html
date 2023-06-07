@@ -9,7 +9,7 @@
                     <a class="overlay-link" href="{% url 'about' %}"></a>
                     <img src="{% static 'images/bg1.png' %}" alt="BG" class="bg-img">
                     <div class="img-box">
-                        {% if about.image %}
+                        {% if about.profile %}
                         <img src="{{about.profile.url}}" alt="Profile">
                         {% else %}
                         <img src="{% static 'images/me.png' %}" alt="Profile">
@@ -32,9 +32,7 @@
                             <div class="marquee">
                                 <div>
                                     <span>
-                                        {% if current_status %}
                                         {{current_status.status}} <img src="{% static 'images/star1.svg' %}" alt="Star"> <b>{{current_status.status}}</b> <img src="{% static 'images/star1.svg' %}" alt="Star"> {{current_status.status}} <img src="{% static 'images/star1.svg' %}" alt="Star">
-                                        {% endif %}
                                     </span>
                                 </div>
                             </div>

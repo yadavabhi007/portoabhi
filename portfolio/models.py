@@ -296,16 +296,24 @@ class CredentialExperience(BaseModel):
 
 
 class Skill(BaseModel):
+    SUMMARY = [
+        ("Beginner", 'Beginner'),
+        ("Intermediate", 'Intermediate'),
+        ("Proficient", 'Proficient'),
+        ("Expert", 'Expert'),
+    ]
     name = models.CharField(max_length=100)
+    summary = models.CharField(max_length=100, choices=SUMMARY, default='Intermediate')
+    percentage = models.PositiveIntegerField(validators=[MaxValueValidator(100)])
 
     def __str__(self):
         return self.name
     
 
 class Certificate(BaseModel):
-    issue_date = models.DateField(auto_now_add=True)
     name = models.CharField(max_length=100)
     issuer = models.CharField(max_length=100)
+    issue_date = models.DateField()
 
 
     def __str__(self):

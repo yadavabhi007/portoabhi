@@ -149,9 +149,9 @@ class ContactView(View):
 
 class WorksView(View):
     def get(self, request):
-        return render (request, 'works.html')
+        works = Work.objects.all().order_by('-id')
+        return render (request, 'works.html', {'works':works})
     
-
 
 
 class WorkDetailsView(View):
@@ -169,7 +169,12 @@ class SpecializationView(View):
 
 class CredentialsView(View):
     def get(self, request):
-        return render (request, 'credentials.html')
+        credential = Credential.objects.first()
+        credential_educations = CredentialEducation.objects.all().order_by('-id')
+        credential_experiences = CredentialExperience.objects.all().order_by('-id')
+        skills = Skill.objects.all().order_by('-id')
+        certificates = Certificate.objects.all().order_by('-id')
+        return render (request, 'credentials.html', {'credential':credential, 'credential_educations':credential_educations, 'credential_experiences':credential_experiences, 'skills':skills, 'certificates':certificates})
     
 
 
