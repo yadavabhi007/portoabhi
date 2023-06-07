@@ -258,9 +258,9 @@ class CredentialExperienceAdmin(admin.ModelAdmin):
 
 @admin.register(Skill)
 class SkillAdmin(admin.ModelAdmin):
-    list_display = ['id', 'name', 'summary', 'percentage', 'created_at', 'updated_at']
-    search_fields = ('name', 'summary')
-    ordering = ('id', 'name', 'summary', 'percentage', 'created_at', 'updated_at')
+    list_display = ['id', 'name', 'level', 'percentage', 'created_at', 'updated_at']
+    search_fields = ('name', 'level')
+    ordering = ('id', 'name', 'level', 'percentage', 'created_at', 'updated_at')
     list_per_page = 20
     list_max_show_all = 10000000
     filter_horizontal = ()
@@ -282,9 +282,9 @@ class CertificateAdmin(admin.ModelAdmin):
 
 @admin.register(Work)
 class WorkAdmin(admin.ModelAdmin):
-    list_display = ['id', 'image_tag', 'name', 'services', 'created_at', 'updated_at']
-    search_fields = ('name', 'services')
-    ordering = ('id', 'name', 'services', 'created_at', 'updated_at')
+    list_display = ['id', 'image_tag_1', 'name', 'app_type', 'created_at', 'updated_at']
+    search_fields = ('name', 'app_type')
+    ordering = ('id', 'name', 'app_type', 'created_at', 'updated_at')
     list_per_page = 20
     list_max_show_all = 10000000
     filter_horizontal = ()
@@ -295,17 +295,4 @@ class WorkAdmin(admin.ModelAdmin):
     }
 
 
-@admin.register(WorkDetail)
-class WorkDetailAdmin(admin.ModelAdmin):
-    list_display = ['id', 'image_tag_1', 'name', 'services', 'created_at', 'updated_at']
-    search_fields = ('name', 'services')
-    ordering = ('id', 'name', 'services', 'created_at', 'updated_at')
-    list_per_page = 20
-    list_max_show_all = 10000000
-    filter_horizontal = ()
-    list_filter = ['created_at', 'updated_at']
-    readonly_fields = ('created_at', 'updated_at')
-    formfield_overrides = {
-        models.ImageField: {'widget': AdminImageWidget}
-    }
 

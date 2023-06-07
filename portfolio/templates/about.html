@@ -6,7 +6,7 @@
         <div class="d-flex about-me-wrap align-items-start gap-24">
             <div data-aos="zoom-in">
                 <div class="about-image-box shadow-box">
-                    <img src="{% static 'images/bg1.png' %}" alt="BG" class="bg-img">
+                    <img src="{% static 'images/bg.png' %}" alt="BG" class="bg-img">
                     <div class="image-inner">
                         {% if about_detail.profile %}
                         <img src="{{about_detail.profile.url}}" alt="Profile">
@@ -29,7 +29,7 @@
         <div class="row mt-24">
             <div class="col-md-6" data-aos="zoom-in">
                 <div class="about-edc-exp about-experience shadow-box">
-                    <img src="{% static 'images/bg1.png' %}" alt="BG" class="bg-img">
+                    <img src="{% static 'images/bg.png' %}" alt="BG" class="bg-img">
                     <h3>EXPERIENCE</h3>
                     <ul>
                         {% for experience in experiences %}
@@ -44,7 +44,7 @@
             </div>
             <div class="col-md-6" data-aos="zoom-in">
                 <div class="about-edc-exp about-education shadow-box">
-                    <img src="{% static 'images/bg1.png' %}" alt="BG" class="bg-img">
+                    <img src="{% static 'images/bg.png' %}" alt="BG" class="bg-img">
                     <h3>EDUCATION</h3>
                     <ul>
                         {% for education in educations %}
@@ -63,7 +63,7 @@
                 <div class="d-flex profile-contact-credentials-wrap gap-24">
                     <div data-aos="zoom-in">
                         <div class="about-profile-box info-box shadow-box h-full">
-                            <img src="{% static 'images/bg1.png' %}" alt="BG" class="bg-img">
+                            <img src="{% static 'images/bg.png' %}" alt="BG" class="bg-img">
                             <div class="inner-profile-icons shadow-box">
                                 <a href="{{linkedin.url}}">
                                     <i class="iconoir-linkedin"></i>
@@ -78,7 +78,7 @@
                                     <h1>Profiles</h1>
                                 </div>
                                 <a href="{% url 'contact' %}" class="about-btn">
-                                    <img src="{% static 'images/icon.svg' %}" alt="Button">
+                                    <img src="{% static 'images/icon1.svg' %}" alt="Button">
                                 </a>
                             </div>
                         </div>
@@ -86,18 +86,18 @@
                     <div data-aos="zoom-in" class="flex-1">
                         <div class="about-contact-box info-box shadow-box">
                             <a class="overlay-link" href="{% url 'contact' %}"></a>
-                            <img src="{% static 'images/bg1.png' %}" alt="BG" class="bg-img">
+                            <img src="{% static 'images/bg.png' %}" alt="BG" class="bg-img">
                             <img src="{% static 'images/icon2.png' %}" alt="Icon" class="star-icon">
                             <h1>Let's <br>Work <span>Together.</span></h1>
                             <a href="{% url 'contact' %}" class="about-btn">
-                                <img src="{% static 'images/icon.svg' %}" alt="Button">
+                                <img src="{% static 'images/icon1.svg' %}" alt="Button">
                             </a>
                         </div>
                     </div>
                     <div data-aos="zoom-in" class="h-full">
                         <div class="about-crenditials-box info-box shadow-box">
                             <a class="overlay-link" href="{% url 'credentials' %}"></a>
-                            <img src="{% static 'images/bg1.png' %}" alt="BG" class="bg-img">
+                            <img src="{% static 'images/bg.png' %}" alt="BG" class="bg-img">
                             <img src="{% static 'images/sign.png' %}" alt="Sign">
                             <div class="d-flex align-items-center justify-content-between">
                                 <div class="infos">
@@ -105,7 +105,7 @@
                                     <h1>Credentials</h1>
                                 </div>
                                 <a href="{% url 'credentials' %}" class="about-btn">
-                                    <img src="{% static 'images/icon.svg' %}" alt="Button">
+                                    <img src="{% static 'images/icon1.svg' %}" alt="Button">
                                 </a>
                             </div>
                         </div>

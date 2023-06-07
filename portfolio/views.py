@@ -155,8 +155,9 @@ class WorksView(View):
 
 
 class WorkDetailsView(View):
-    def get(self, request):
-        return render (request, 'work-details.html')
+    def get(self, request, name):
+        work = Work.objects.get(name=name)
+        return render (request, 'work-details.html', {'work':work})
     
 
 

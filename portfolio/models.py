@@ -211,7 +211,7 @@ class Enquiry(BaseModel):
     os_type = models.CharField(max_length=100, null=True, blank=True)
     os_version = models.CharField(max_length=100, null=True, blank=True)
     subject = models.CharField(max_length=100)
-    message = models.TextField()
+    message = models.TextField(max_length=500)
 
     def __str__(self):
         return self.name
@@ -296,14 +296,14 @@ class CredentialExperience(BaseModel):
 
 
 class Skill(BaseModel):
-    SUMMARY = [
+    LEVEL = [
         ("Beginner", 'Beginner'),
         ("Intermediate", 'Intermediate'),
         ("Proficient", 'Proficient'),
         ("Expert", 'Expert'),
     ]
     name = models.CharField(max_length=100)
-    summary = models.CharField(max_length=100, choices=SUMMARY, default='Intermediate')
+    level = models.CharField(max_length=100, choices=LEVEL, default='Intermediate')
     percentage = models.PositiveIntegerField(validators=[MaxValueValidator(100)])
 
     def __str__(self):
@@ -321,23 +321,13 @@ class Certificate(BaseModel):
     
 
 class Work(BaseModel):
+    TYPE = [
+        ("Web App", 'Web App'),
+        ("Mobile App", 'Mobile App'),
+        ("Web And Mobile App", 'Web And Mobile App'),
+    ]
     name = models.CharField(max_length=100)
-    services = models.CharField(max_length=100)
-    image = models.ImageField(upload_to='work')
-
-    def __str__(self):
-        return self.name
-
-    def image_tag(self):
-        if self.profile:
-            return mark_safe('<img src="{}" width="100" height="100"/>'.format(self.image.url))
-        return None
-    image_tag.short_description = 'Profile'
-    image_tag.allow_tags = True
-
-
-class WorkDetail(BaseModel):
-    name = models.CharField(max_length=100)
+    app_type = models.CharField(max_length=100, choices=TYPE, default='Web App')
     image_1 = models.ImageField(upload_to='work')
     image_2 = models.ImageField(upload_to='work')
     about = models.TextField()
@@ -345,15 +335,15 @@ class WorkDetail(BaseModel):
     description = models.TextField()
     year = models.CharField(max_length=100)
     client = models.CharField(max_length=100)
-    services = models.CharField(max_length=100)
 
     def __str__(self):
         return self.name
 
     def image_tag_1(self):
-        if self.profile:
+        if self.image_1:
             return mark_safe('<img src="{}" width="100" height="100"/>'.format(self.image_1.url))
         return None
-    image_tag_1.short_description = 'Profile'
+    image_tag_1.short_description = 'Image'
     image_tag_1.allow_tags = True
+
 
