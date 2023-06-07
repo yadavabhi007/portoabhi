@@ -326,7 +326,7 @@ class Work(BaseModel):
         ("Mobile App", 'Mobile App'),
         ("Web And Mobile App", 'Web And Mobile App'),
     ]
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, unique=True)
     app_type = models.CharField(max_length=100, choices=TYPE, default='Web App')
     image_1 = models.ImageField(upload_to='work')
     image_2 = models.ImageField(upload_to='work')
