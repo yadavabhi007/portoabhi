@@ -91,10 +91,12 @@ DATABASES = {
 
     # 'default': {
     #     'ENGINE': 'django.db.backends.postgresql',
+    #     'DATABASE_URL' : os.environ.get('DB_URL'),
     #     'NAME': os.environ.get('DB_NAME'),
     #     'USER': os.environ.get('DB_USER'),
     #     'PASSWORD': os.environ.get('DB_PASSWORD'),
     #     'HOST': os.environ.get('DB_HOST'),
+    #     'PORT': os.environ.get('DB_PORT'),
     # },
 }
 
@@ -151,12 +153,12 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 
 # Email Configuration
-# EMAIL_BACKEND="django.core.mail.backends.smtp.EmailBackend"
-# EMAIL_HOST = 'smtp.gmail.com'
-# EMAIL_PORT = 587
-# EMAIL_HOST_USER = os.environ.get('EMAIL_FROM')
-# EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASS')
-# EMAIL_USE_TLS = True
+EMAIL_BACKEND="django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+EMAIL_USE_TLS = True
 
 
 DATA_UPLOAD_MAX_NUMBER_FIELDS = 10000000

@@ -35,7 +35,7 @@ class IndexView(View):
             except:
                 city = ''
                 country = ''
-            # SiteVisitedIPs.objects.create(ip=ip, device=socket.gethostname(), device_type=device_type, city=city, country=country, browser_type=browser_type, browser_version=browser_version, os_type=os_type, os_version=os_version)
+            SiteVisitedIPs.objects.create(ip=ip, device=socket.gethostname(), device_type=device_type, city=city, country=country, browser_type=browser_type, browser_version=browser_version, os_type=os_type, os_version=os_version)
         else:
             ip = request.META.get('REMOTE_ADDR')
             try:
@@ -44,7 +44,7 @@ class IndexView(View):
             except:
                 city = ''
                 country = ''
-            # SiteVisitedIPs.objects.create(ip=ip, device=socket.gethostname(), device_type=device_type, city=city, country=country, browser_type=browser_type, browser_version=browser_version, os_type=os_type, os_version=os_version)
+            SiteVisitedIPs.objects.create(ip=ip, device=socket.gethostname(), device_type=device_type, city=city, country=country, browser_type=browser_type, browser_version=browser_version, os_type=os_type, os_version=os_version)
         message = f'You are visiting from'
         message_ip = f'IP: {ip}'
         message_device = f'Device: {socket.gethostname()}'
