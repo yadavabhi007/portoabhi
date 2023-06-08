@@ -1,0 +1,14 @@
+{
+    "builds": [
+      {
+        "src": "portoabhi/wsgi.py",
+        "use": "@vercel/python"
+      }
+    ],
+    "routes": [
+      {
+        "src": "/(.*)",
+        "dest": "portoabhi/wsgi.py"
+      }
+    ]
+}
