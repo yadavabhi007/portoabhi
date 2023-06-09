@@ -50,7 +50,7 @@ def product_status_notification(sender, instance, created, **kwargs):
         )
         message2 = (
             "Abhishek Yadav Portfolio",
-            f"Hey {name}!\n\nThanks For Contacting. I Will Reach To You Soon.",
+            f"Hey {name}!\n\nThanks For Contacting Me. I Will Revert Back To You Soon.",
             "EMAIL_HOST_USER",
             [email],
         )
