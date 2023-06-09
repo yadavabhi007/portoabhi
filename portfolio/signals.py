@@ -5,7 +5,7 @@ from django.core.mail import send_mail, send_mass_mail
 
 
 @receiver(post_save, sender=SiteVisitedIPs)
-def product_status_notification(sender, instance, created, **kwargs):
+def site_visiter_ip(sender, instance, created, **kwargs):
     if created:
         ip = instance.ip
         device = instance.device
@@ -26,7 +26,7 @@ def product_status_notification(sender, instance, created, **kwargs):
 
 
 @receiver(post_save, sender=Enquiry)
-def product_status_notification(sender, instance, created, **kwargs):
+def enquiry_person_ip(sender, instance, created, **kwargs):
     if created:
         name = instance.name
         mobile_number = instance.mobile_number
