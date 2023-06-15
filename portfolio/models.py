@@ -238,6 +238,8 @@ class SocialProfile(BaseModel):
         ("Twitter", 'Twitter'),
         ("Snapchat", 'Snapchat'),
         ("Whatsapp", 'Whatsapp'),
+        ("HackerRank", 'HackerRank'),
+        ("LeetCode", 'LeetCode'),
     ]
     heading = models.CharField(max_length=100, choices=PROFILE, unique=True, default='Linkedin')
     url = models.URLField()
