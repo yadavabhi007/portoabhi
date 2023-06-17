@@ -128,14 +128,11 @@ class CurrentStatus(BaseModel):
 
 class SiteVisitedIPs(BaseModel):
     ip = models.CharField(max_length=100, null=True, blank=True)
-    device = models.CharField(max_length=100, null=True, blank=True)
-    device_type = models.CharField(max_length=100, null=True, blank=True)
     city = models.CharField(max_length=100, null=True, blank=True)
     country = models.CharField(max_length=100, null=True, blank=True)
-    browser_type = models.CharField(max_length=100, null=True, blank=True)
-    browser_version = models.CharField(max_length=100, null=True, blank=True)
+    device_type = models.CharField(max_length=100, null=True, blank=True)
     os_type = models.CharField(max_length=100, null=True, blank=True)
-    os_version = models.CharField(max_length=100, null=True, blank=True)
+
 
     def __str__(self):
         return self.ip
@@ -202,14 +199,10 @@ class Enquiry(BaseModel):
     mobile_number = PhoneNumberField(max_length=15)
     email = models.EmailField(max_length=100)
     ip = models.CharField(max_length=100, null=True, blank=True)
-    device = models.CharField(max_length=100, null=True, blank=True)
-    device_type = models.CharField(max_length=100, null=True, blank=True)
     city = models.CharField(max_length=100, null=True, blank=True)
     country = models.CharField(max_length=100, null=True, blank=True)
-    browser_type = models.CharField(max_length=100, null=True, blank=True)
-    browser_version = models.CharField(max_length=100, null=True, blank=True)
+    device_type = models.CharField(max_length=100, null=True, blank=True)
     os_type = models.CharField(max_length=100, null=True, blank=True)
-    os_version = models.CharField(max_length=100, null=True, blank=True)
     subject = models.CharField(max_length=100)
     message = models.TextField(max_length=500)
 

@@ -174,7 +174,7 @@
 <script>
     var alerted = sessionStorage.getItem('alerted') || '';
     if (alerted != 'yes') {
-    swal('{{message}}', '{{message_ip}}\n{{message_device}}\n{{message_device_type}}\n{{message_city}}\n{{message_country}}\n{{message_browser_type}}\n{{message_browser_version}}\n{{message_os_type}}\n{{message_os_version}}');
+    swal('{{message}}', '{{message_ip}}\n{{message_city}}\n{{message_country}}\n{{message_device_type}}\n{{message_os_type}}');
     sessionStorage.setItem('alerted','yes');
     }
 </script>

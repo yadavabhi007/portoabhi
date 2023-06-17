@@ -1,4 +1,3 @@
-import socket
 from .forms import *
 from .models import *
 from django.views import View
@@ -22,10 +21,7 @@ class IndexView(View):
             device_type = "PC"
         else:
             device_type = "Bot"
-        browser_type = request.user_agent.browser.family
-        browser_version = request.user_agent.browser.version_string
         os_type = request.user_agent.os.family
-        os_version = request.user_agent.os.version_string
         g = GeoIP2()
         if proxy_servers:
             ip = proxy_servers.split(',')[-1]
@@ -35,7 +31,7 @@ class IndexView(View):
             except:
                 city = ''
                 country = ''
-            SiteVisitedIPs.objects.create(ip=ip, device=socket.gethostname(), device_type=device_type, city=city, country=country, browser_type=browser_type, browser_version=browser_version, os_type=os_type, os_version=os_version)
+            SiteVisitedIPs.objects.create(ip=ip, city=city, country=country, device_type=device_type, os_type=os_type)
         else:
             ip = request.META.get('REMOTE_ADDR')
             try:
@@ -44,18 +40,14 @@ class IndexView(View):
             except:
                 city = ''
                 country = ''
-            SiteVisitedIPs.objects.create(ip=ip, device=socket.gethostname(), device_type=device_type, city=city, country=country, browser_type=browser_type, browser_version=browser_version, os_type=os_type, os_version=os_version)
+            SiteVisitedIPs.objects.create(ip=ip, city=city, country=country, device_type=device_type, os_type=os_type)
         message = f'You are visiting from'
         message_ip = f'IP: {ip}'
-        message_device = f'Device: {socket.gethostname()}'
-        message_device_type = f'Device Type: {device_type}'
         message_city = f'City: {city}'
         message_country = f'Country: {country}'
-        message_browser_type = f'Browser Type: {browser_type}'
-        message_browser_version = f'Browser Version: {browser_version}'
+        message_device_type = f'Device Type: {device_type}'
         message_os_type = f'OS Type: {os_type}'
-        message_os_version = f'OS Version: {os_version}'
-        context = {'about':about, 'ip':ip, 'device':socket.gethostname(), 'device_type':device_type, 'city':city, 'country':country, 'browser_type':browser_type, 'browser_version':browser_version, 'os_type':os_type, 'os_version':os_version, 'message':message, 'message_ip':message_ip, 'message_device':message_device, 'message_device_type':message_device_type, 'message_city':message_city, 'message_country':message_country, 'message_browser_type':message_browser_type, 'message_browser_version':message_browser_version, 'message_os_type':message_os_type, 'message_os_version':message_os_version, 'current_status':current_status}
+        context = {'about':about, 'ip':ip, 'city':city, 'country':country, 'device_type':device_type, 'os_type':os_type, 'message':message, 'message_ip':message_ip, 'message_device_type':message_device_type, 'message_city':message_city, 'message_country':message_country, 'message_os_type':message_os_type, 'current_status':current_status}
         return render (request, 'index.html', context)
     
 
@@ -95,10 +87,7 @@ class ContactView(View):
             device_type = "PC"
         else:
             device_type = "Bot"
-        browser_type = request.user_agent.browser.family
-        browser_version = request.user_agent.browser.version_string
         os_type = request.user_agent.os.family
-        os_version = request.user_agent.os.version_string
         g = GeoIP2()
         if proxy_servers:
             ip = proxy_servers.split(',')[0]
@@ -117,27 +106,18 @@ class ContactView(View):
                 city = None
                 country = None
         request.POST = request.POST.copy()
-        device = socket.gethostname()
         request.POST['ip'] = ip
-        request.POST['device'] = device
-        request.POST['device_type'] = device_type
         request.POST['city'] = city
         request.POST['country'] = country
-        request.POST['browser_type'] = browser_type
-        request.POST['browser_version'] = browser_version
+        request.POST['device_type'] = device_type
         request.POST['os_type'] = os_type
-        request.POST['os_version'] = os_version
         forms = EnquiryForm(request.POST)
         if forms.is_valid():
             forms.cleaned_data['ip'] = ip
-            forms.cleaned_data['device'] = device
-            forms.cleaned_data['device_type'] = device_type
             forms.cleaned_data['city'] = city
             forms.cleaned_data['country'] = country
-            forms.cleaned_data['browser_type'] = browser_type
-            forms.cleaned_data['browser_version'] = browser_version
+            forms.cleaned_data['device_type'] = device_type
             forms.cleaned_data['os_type'] = os_type
-            forms.cleaned_data['os_version'] = os_version
             forms.save()
             forms = EnquiryForm()
             messages.success(request, 'Your Message Was Sent Successfully')
