@@ -12,19 +12,15 @@ def enquiry_person_ip(sender, instance, created, **kwargs):
         mobile_number = instance.mobile_number
         email = instance.email
         ip = instance.ip
-        device = instance.device
-        device_type = instance.device_type
         city = instance.city
         country = instance.country
-        browser_type = instance.browser_type
-        browser_version = instance.browser_version
+        device_type = instance.device_type
         os_type = instance.os_type
-        os_version = instance.os_version
         subject = instance.subject
         message = instance.message
         message1 = (
             "Abhishek Yadav Portfolio",
-            f"Hey Abhishek Yadav! You have an enquiry from:\n\nName - {name}\n\nMobile Number - {mobile_number}\n\nEmail - {email}\n\nIP - {ip}\n\nDevice - {device}\n\nDevice Type - {device_type}\n\nCity - {city}\n\nCountry - {country}\n\nBrowser Type - {browser_type}\n\nBrowser Version - {browser_version}\n\nOS Type - {os_type}\n\nOS Version - {os_version}\n\nSubject - {subject}\n\nMessage - {message}",
+            f"Hey Abhishek Yadav! You have an enquiry from:\n\nName - {name}\n\nMobile Number - {mobile_number}\n\nEmail - {email}\n\nIP - {ip}\n\nCity - {city}\n\nCountry - {country}\n\nDevice Type - {device_type}\n\nOS Type - {os_type}\n\nSubject - {subject}\n\nMessage - {message}",
             "EMAIL_HOST_USER",
             ["abhishek8894434487@gmail.com"],
         )
