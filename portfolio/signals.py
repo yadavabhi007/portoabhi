@@ -22,7 +22,7 @@ def enquiry_person_ip(sender, instance, created, **kwargs):
             "Abhishek Yadav Portfolio",
             f"Hey Abhishek Yadav! You have an enquiry from:\n\nName - {name}\n\nMobile Number - {mobile_number}\n\nEmail - {email}\n\nIP - {ip}\n\nCity - {city}\n\nCountry - {country}\n\nDevice Type - {device_type}\n\nOS Type - {os_type}\n\nSubject - {subject}\n\nMessage - {message}",
             "EMAIL_HOST_USER",
-            ["abhishek8894434487@gmail.com"],
+            ["yadav31abhi@gmail.com"],
         )
         message2 = (
             "Abhishek Yadav Portfolio",
